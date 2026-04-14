@@ -1,0 +1,616 @@
+name: Events
+description: |-
+
+  APIs for managing events
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/events
+    metadata:
+      custom: []
+      groupName: Events
+      groupDescription: |-
+
+        APIs for managing events
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all events'
+      description: 'Get a paginated list of events. Supports filtering by status, archive status, and search.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_SANCTUM_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        custom: []
+        name: page
+        description: 'The page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of items per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'Filter by status (draft, published, archived).'
+        required: false
+        example: published
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      archived:
+        custom: []
+        name: archived
+        description: 'Filter by archive status.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Search in title and description.'
+        required: false
+        example: conference
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      page: 1
+      per_page: 15
+      status: published
+      archived: false
+      search: conference
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "id": 1,
+                "title": "Laravel Conference",
+                "description": "Annual Laravel conference",
+                "start_date": "2024-06-15",
+                "end_date": "2024-06-17",
+                "location": "San Francisco",
+                "status": "published",
+                "archived": false,
+                "created_by": 1,
+                "created_at": "2024-01-01T00:00:00.000000Z",
+                "updated_at": "2024-01-01T00:00:00.000000Z"
+              }
+            ],
+            "links": {...},
+            "meta": {...}
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/events
+    metadata:
+      custom: []
+      groupName: Events
+      groupDescription: |-
+
+        APIs for managing events
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a new event'
+      description: 'Create a new event with the provided data.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_SANCTUM_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        custom: []
+        name: title
+        description: 'The event title.'
+        required: true
+        example: 'Laravel Conference 2024'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      slug:
+        custom: []
+        name: slug
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: amniihfqcoynlazghdtqt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      description:
+        custom: []
+        name: description
+        description: 'The event description.'
+        required: true
+        example: 'Annual Laravel conference'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      start_time:
+        custom: []
+        name: start_time
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: true
+        example: '2026-04-14 14:09:37'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      end_time:
+        custom: []
+        name: end_time
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>start_time</code>.'
+        required: true
+        example: '2107-05-14'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      timezone:
+        custom: []
+        name: timezone
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: Arctic/Longyearbyen
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      event_type:
+        custom: []
+        name: event_type
+        description: ''
+        required: true
+        example: in-person
+        type: string
+        enumValues:
+          - in-person
+          - online
+          - hybrid
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      location:
+        custom: []
+        name: location
+        description: 'The event location.'
+        required: true
+        example: 'San Francisco, CA'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      city:
+        custom: []
+        name: city
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: iihfqcoynlazghdtqtqxb
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      meeting_url:
+        custom: []
+        name: meeting_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://www.hill.net/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      thumbnail_url:
+        custom: []
+        name: thumbnail_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://www.mitchell.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      category:
+        custom: []
+        name: category
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: lpmufinllwloauydlsmsj
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      capacity:
+        custom: []
+        name: capacity
+        description: 'Must be at least 1.'
+        required: false
+        example: 70
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      ticket_price:
+        custom: []
+        name: ticket_price
+        description: 'Must be at least 0.'
+        required: false
+        example: 61
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: 'The event status. Must be one of: draft, published, archived.'
+        required: false
+        example: draft
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      is_public:
+        custom: []
+        name: is_public
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_archived:
+        custom: []
+        name: is_archived
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      published_at:
+        custom: []
+        name: published_at
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2026-04-14 14:09:37'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      archived_at:
+        custom: []
+        name: archived_at
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2026-04-14 14:09:37'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      metadata:
+        custom: []
+        name: metadata
+        description: 'Must be a valid JSON string.'
+        required: false
+        example: '["consequatur","consequatur"]'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      start_date:
+        custom: []
+        name: start_date
+        description: 'The start date.'
+        required: true
+        example: '2024-06-15'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'The end date.'
+        required: true
+        example: '2024-06-17'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      archived:
+        custom: []
+        name: archived
+        description: 'Whether the event is archived.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      title: 'Laravel Conference 2024'
+      slug: amniihfqcoynlazghdtqt
+      description: 'Annual Laravel conference'
+      start_time: '2026-04-14 14:09:37'
+      end_time: '2107-05-14'
+      timezone: Arctic/Longyearbyen
+      event_type: in-person
+      location: 'San Francisco, CA'
+      city: iihfqcoynlazghdtqtqxb
+      meeting_url: 'http://www.hill.net/'
+      thumbnail_url: 'http://www.mitchell.com/'
+      category: lpmufinllwloauydlsmsj
+      capacity: 70
+      ticket_price: 61
+      status: draft
+      is_public: false
+      is_archived: false
+      published_at: '2026-04-14 14:09:37'
+      archived_at: '2026-04-14 14:09:37'
+      metadata: '["consequatur","consequatur"]'
+      start_date: '2024-06-15'
+      end_date: '2024-06-17'
+      archived: false
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: |-
+          {
+            "data": {
+              "id": 1,
+              "title": "Laravel Conference 2024",
+              "description": "Annual Laravel conference",
+              "start_date": "2024-06-15",
+              "end_date": "2024-06-17",
+              "location": "San Francisco, CA",
+              "status": "draft",
+              "archived": false,
+              "created_by": 1,
+              "created_at": "2024-01-01T00:00:00.000000Z",
+              "updated_at": "2024-01-01T00:00:00.000000Z"
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/events/{id}'
+    metadata:
+      custom: []
+      groupName: Events
+      groupDescription: |-
+
+        APIs for managing events
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a specific event'
+      description: 'Get detailed information about a specific event.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_SANCTUM_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      event:
+        custom: []
+        name: event
+        description: 'The event ID.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 17
+      event: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": {
+              "id": 1,
+              "title": "Laravel Conference 2024",
+              "description": "Annual Laravel conference",
+              "start_date": "2024-06-15",
+              "end_date": "2024-06-17",
+              "location": "San Francisco, CA",
+              "status": "published",
+              "archived": false,
+              "created_by": 1,
+              "created_at": "2024-01-01T00:00:00.000000Z",
+              "updated_at": "2024-01-01T00:00:00.000000Z"
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/events/{id}'
+    metadata:
+      custom: []
+      groupName: Events
+      groupDescription: |-
+
+        APIs for managing events
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete an event'
+      description: 'Delete a specific event.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer Bearer {YOUR_SANCTUM_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      event:
+        custom: []
+        name: event
+        description: 'The event ID.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 17
+      event: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "message": "Event deleted successfully"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
